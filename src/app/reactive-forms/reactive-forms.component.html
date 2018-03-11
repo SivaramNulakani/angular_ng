@@ -1,0 +1,81 @@
+  <nav class="navbar navbar-expand-lg navbar-inverse bg-primary">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" [formControl]="searchField" placeholder="Search" class="form-control">
+      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><label class="lbl" for="search">Search</label></button> -->
+    </form>
+  </div>
+</nav>
+<div class="container">
+  <form [formGroup]="formGroup" (ngSubmit)="regForm()">
+    <div class="form-group">
+      <label for="userName">UserName</label>
+      <input type="text" id="userName" class="form-control" formControlName="userName">
+      <span class="help-block" *ngIf="!formGroup.get('userName').valid && formGroup.get('userName').touched">
+        <span class="help-block" *ngIf="formGroup.get('userName').errors['UserHasBeenRestricted']">User has been Restricted !!</span>
+      <span class="help-block" *ngIf="formGroup.get('userName').errors['required']">User Name is required !!</span>
+      <p *ngIf="formGroup.get('userName').errors.minlength">User Name must be 10 characters long, we need another {{formGroup.get('userName').errors.minlength.requiredLength -
+        formGroup.get('userName').errors.minlength.actualLength}} characters </p>
+      <p *ngIf="formGroup.get('userName').errors.maxlength">User Name should not exceed {{formGroup.get('userName').errors.maxlength.requiredLength}} characters long
+        </span>
+
+    </div>
+    <div class="form-group" [ngClass]="{'has-danger': formGroup.controls.email.invalid && (formGroup.controls.email.dirty || formGroup.controls.email.touched),'has-success': formGroup.controls.email.valid && (formGroup.controls.email.dirty || formGroup.controls.email.touched)}">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email">
+      <span class="help-block" *ngIf="!formGroup.get('email').valid && formGroup.get('email').touched">Please enter a valid value !</span>
+    </div>
+    <div formGroupName="contactDetails">
+      <div class="form-group">
+        <label for="mobile">Mobile</label>
+        <input type="number" id="mobile" class="form-control" formControlName="mobile" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$">
+        <span class="help-block" *ngIf="formGroup.get('contactDetails.mobile').errors && !formGroup.get('contactDetails.mobile').valid && formGroup.get('contactDetails.mobile').touched">
+           <p *ngIf="formGroup.get('contactDetails.mobile').errors['required']">Mobile Number is required</p>
+          <p *ngIf="formGroup.controls.contactDetails.controls.mobile.errors.minlength">Mobile Number must be 8 characters long, we need another {{formGroup.controls.contactDetails.controls.mobile.errors.minlength.requiredLength - formGroup.controls.contactDetails.controls.mobile.errors.minlength.actualLength}} characters </p>
+      </span>
+      </div>
+    </div>
+    <div formArrayName="hobbies">
+      <button class="btn btn-primary" (click)="addHobbies()">Add Hobbies</button>
+      <div class="form-group" *ngFor="let hobby of formGroup.get('hobbies').controls;let i=index">
+        <input type="text" [formControlName]="i" class="form-control">
+        <span class="help-block" *ngIf="!formGroup.get('hobbies.'+i).valid && formGroup.get('hobbies.'+i).touched">Please enter a valid value !</span>
+      </div>
+    </div>
+    <div class="radio" *ngFor="let gender of genders">
+      <label for="gender">
+      <input type="radio" [value]="gender" formControlName="gender">{{gender}}
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="comment">Comment</label>
+      <textarea class="form-control" formControlName="comment" rows="3"></textarea>
+      <small class="form-text text-muted">
+<span>{{ 100 - formGroup.value.comment.length }}</span> characters left
+</small>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!formGroup.valid">Go</button>
+    <button type="reset" class="btn btn-primary" [disabled]="!formGroup.valid">Clear</button>
+  </form>
+</div>
+<hr/>
+<hr/>
+<ul>
+<li *ngFor="let search of searches">{{ search }}</li>
+</ul>

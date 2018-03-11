@@ -1,0 +1,51 @@
+<h4 #h4Header>Default Header Name
+  <h4>
+    <!-- <div class="card card-block" [ngStyle]="{'background-color':10>5?'pink':'blue'}" customdir> -->
+    <div class="card card-block" customdir>
+      <h4 class="card-title">
+        <ng-content select="span"></ng-content>
+        <!-- <ng-content select=".setup"></ng-content>  -->
+      </h4>
+      <!-- <p class="card-text"
+[hidden]="data.hide">
+<ng-content select="h1"></ng-content>
+<!-- <ng-content select=".punchline"></ng-content> ②
+</p> -->
+      <p class="card-text" [style.display]="'none'">{{data.punchline}}</p>
+      <ng-template [ngIf]="data.hide">
+        <p class="card-text">
+          <ng-content select="h1" [style.display]="'none'"></ng-content>
+          <!-- <ng-content select=".punchline"></ng-content> ② -->
+        </p>
+
+        <div class="hostBinding">
+          <p *ngIf="ishovering===true;else nothover">Host binding</p>
+          <ng-template #nothover>
+            <p>nothover</p>
+          </ng-template>
+        </div>
+      </ng-template>
+      <a class="btn btn-primary" (click)="data.toggle()">Tell Me
+</a>
+      <button type="button" class="btn btn-danger" (click)="deleteJoke(data)" [disabled]="flag">Delete Joke
+</button>
+    </div>
+    <hr>
+    <div>
+      To render the name variable we use this syntax
+      <pre ngNonBindable>{{ name }}</pre>
+    </div>
+
+    <h1>Image here :)</h1> <img [appCcRollover]="{initial:'https://unsplash.it/200/300?image=201',over:'https://unsplash.it/200/300?image=202',querySelector:'.img_src'}" [src]="imagePath" class="img_src"/>
+    <h2 ngNonBindable>{{ngNonBindable}}</h2>
+    <h2>{{promiseData | async}}</h2>
+
+    <h2 ngNonBindable>{{observableData}}</h2>
+    <!-- <h2>{{observableData}}</h2> -->
+    <h2>{{observable | async}}</h2>
+
+    <hr/>
+    <h1 ngNonBindable>{{ 1 | numberPipe}}</h1>
+    <h1>{{ inputText | numberPipe}}</h1>
+    Enter Input<input type="text" [(ngModel)]="inputText"/>
+    

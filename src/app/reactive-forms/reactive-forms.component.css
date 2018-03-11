@@ -1,0 +1,12 @@
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+#mobile{
+    background-color: gray;
+}
+.form-inline {
+ background-color: green;
+}
+label.lbl{
+    color: white;
+}

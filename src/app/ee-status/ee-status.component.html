@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm-12"><input type="text" [(ngModel)]="serverStatus">Search Status Here</div>
+</div>
+<button class="btn btn-primary" (click)="addStatus(serverStatus)">Add status</button>
+<div class="row" *ngFor="let ee of eeDetails | statusPipe:serverStatus:'status'" [ngStyle]="{borderStyle: 'ridge'}">
+  <div class="col-sm-6">{{ee.name}}</div>
+  <div class="col-sm-6">{{ee.status}}</div>
+</div>
+<div class="row">
+  <div class="col-sm-12">{{appStatus | async}}</div>
+</div>

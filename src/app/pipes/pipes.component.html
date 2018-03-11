@@ -1,0 +1,101 @@
+<hr>
+<h2>JSON Pipe Example</h2>
+<h4>Without JSON Pipe.</h4>
+{{obj}}
+<h4>With JSON Pipe.</h4>
+{{obj | json}}
+<hr>
+<div class="card card-block">
+  <h4 class="card-title">Currency</h4>
+  <div class="card-text">
+    <p ngNonBindable>{{ 1234.56 | currency:'CAD' }}</p>
+    <p>{{ 1234.56 | currency:"CAD" }}</p>
+
+    <p ngNonBindable>{{ 1234.56 | currency:'CAD':'code' }}</p>
+    <p>{{ 1234.56 | currency:'CAD':'code'}}</p>
+
+    <p ngNonBindable>{{ 1234.56 | currency:'CAD':'symbol' }}</p>
+    <p>{{ 1234.56 | currency:'CAD':'symbol'}}</p>
+
+    <p ngNonBindable>{{ 1234.56 | currency:'CAD':'symbol-narrow' }}</p>
+    <p>{{ 1234.56 | currency:'CAD':'symbol-narrow'}}</p>
+  </div>
+</div>
+<hr/>
+<div class="card card-block">
+  <h4 class="card-title">Date</h4>
+  <div class="card-text">
+    <p ngNonBindable>{{ dateVal | date: 'shortTime' }}</p> 
+    <p>{{ dateVal | date: 'shortTime' }}</p>
+
+    <p ngNonBindable>{{ dateVal | date:'fullDate' }}</p>
+    <p>{{ dateVal | date: 'fullDate' }}</p>
+
+    <p ngNonBindable>{{ dateVal | date: 'd/M/y' }}</p>
+    <p>{{ dateVal | date: 'd/M/y' }}</p>
+    <p>{{ dateVal | date: 'dd/mm/yyyy' }}</p>
+  </div>
+</div>
+<hr/>
+
+<div class="card card-block">
+  <div class="card-text">
+    <h4 class="card-title">DecimalPipe</h4>
+    <p ngNonBindable>{{ 3.14159265 | number: '3.1-2' }}</p>
+    <p>{{ 3.14159265 | number: '3.1-2' }}</p>
+
+    <p ngNonBindable>{{ 3.14159265 | number: '1.4-4' }}</p>
+    <p>{{ 3.14159265 | number: '1.4-4' }}</p>
+
+    <p ngNonBindable>{{ 25.655498448 | number: '1.4-4' }}</p>
+    <p>{{ 25.655498448 | number:'5.5-8' }}</p>
+  </div>
+</div>
+<hr/>
+<div class="card card-block">
+  <h4 class="card-title">PercentPipe</h4>
+  <div class="card-text">
+    <p ngNonBindable>{{ 0.123456 | percent }}</p>
+    <p>{{ 0.123456 | percent }}</p>
+
+    <p ngNonBindable>{{ 0.123456 | percent: '2.1-2' }}</p> 
+    <p>{{ 0.123456 | percent: '2.1-2' }}</p>
+
+    <p ngNonBindable>{{ 0.123456 | percent: '10.4-4' }}</p>
+    <p>{{ 0.123456 | percent : "10.4-4" }}</p>
+  </div>
+</div>
+<hr/>
+<div class="card card-block">
+  <h4 class="card-title">SlicePipe</h4>
+  <div class="card-text">
+    <p ngNonBindable>{{ [1,2,3,4,5,6] | slice:1:3 }}</p> 
+    <p>{{ [1,2,3,4,5,6] | slice:0:3 }}</p>
+
+    <p ngNonBindable>{{ [1,2,3,4,5,6] | slice:1 }}</p> 
+    <p>{{ [1,2,3,4,5,6] | slice:1 }}</p>
+
+    <p ngNonBindable>{{ [1,2,3,4,5,6,7,2] | slice:2:-2 }}</p> 
+    <p>{{ [1,2,3,4,5,6] | slice:2:-1 }}</p>
+
+    <pre ngNonBindable>
+&lt;ul&gt;
+  &lt;li *ngFor=&quot;let v of [1,2,3,4,5,6] | slice:2:-1&quot;&gt;
+    {{v}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+    </pre>
+
+    <ul>
+      <li *ngFor="let v of [1,2,3,4,5,6] | slice:2:-1"> 
+        {{v}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="card card-block">
+<h4 class="card-title">Card Title</h4>
+<p class="card-text">Card Text</p>
+</div>
+
